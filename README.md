@@ -24,7 +24,7 @@ It Has Two Parts
   
   ![Navigation Drawer](https://github.com/DAKSHSEMWAL/Eatit/blob/master/Client%20Side/EatIt2/Screenshot_20180919-015351.png)
   
-  ![Food List Page](https://github.com/DAKSHSEMWAL/Eatitb/blob/master/Client%20Side/EatIt2/Screenshot_20180919-015403.png)
+  ![Food List Page](https://github.com/DAKSHSEMWAL/Eatit/blob/master/Client%20Side/EatIt2/Screenshot_20180919-015403.png)
   
   ![Material Search Bar](https://github.com/DAKSHSEMWAL/Eatit/blob/master/Client%20Side/EatIt2/Screenshot_20180919-015411.png)
   
