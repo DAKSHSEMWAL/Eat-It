@@ -9,6 +9,6 @@ It Has Two Parts
 
   ![EatIT Logo](https://github.com/DAKSHSEMWAL/Eatit/blob/master/Client%20Side/EatIt2/eatitlogo.png)
   
-  ![](http://www.youtube.com/watch?v=-nLGb7KCfAU "Eat IT Client Side App")
+  [![](http://img.youtube.com/vi/-nLGb7KCfAU/0.jpg)](http://www.youtube.com/watch?v=-nLGb7KCfAU "Eat IT Client Side App")
   
 # Server Side
