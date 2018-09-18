@@ -34,6 +34,5 @@ It Has Two Parts
   
   ![Food Cart Page](https://github.com/DAKSHSEMWAL/Eatit/blob/master/Client%20Side/EatIt2/Screenshot_20180919-021724.png)
   
-  ![Order History](https://github.com/DAKSHSEMWAL/Eatit/blob/master/Client%20Side/EatIt2/Screenshot_20180919-035618.png)
 
 # Server Side
