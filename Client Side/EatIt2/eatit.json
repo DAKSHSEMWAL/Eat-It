@@ -407,22 +407,22 @@
       "name" : "Elton John",
       "password" : "Ima"
     },
-      "098" : {
+     "000089" : {
 	  "IsStaff" : "true",
       "Name" : "Goku",
       "Password" : "DBZ"
     },
-    "090" : {
+    "000099" : {
       "IsStaff" : "true",
       "name" : "Asta",
       "password" : "Clover"
     },
-    "100" : {
+    "000100" : {
       "IsStaff" : "true",
       "name" : "Aang",
       "password" : "Firebending"
     },
-    "101" : {
+    "000101" : {
       "IsStaff" : "true",
       "name" : "Kurosaki",
       "password" : "Bleach"
