@@ -58,7 +58,7 @@ public class FoodList extends AppCompatActivity {
 
         //Load Menu
         recycler_food = (RecyclerView)findViewById(R.id.recycler_food);
-        //recycler_food.setHasFixedSize(true);
+        recycler_food.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recycler_food.setLayoutManager(layoutManager);
 
@@ -124,7 +124,7 @@ public class FoodList extends AppCompatActivity {
     private void startSearch(CharSequence text){
 
 
-        FirebaseRecyclerOptions<Food> op = new FirebaseRecyclerOptions.Builder<Food>().setQuery(foodlist.orderByChild("Name").equalTo(text.toString()),Food.class).build();
+        FirebaseRecyclerOptions<Food> op = new FirebaseRecyclerOptions.Builder<Food>().setQuery(foodlist.orderByChild("name").equalTo(text.toString()),Food.class).build();
         searchAdapter=new FirebaseRecyclerAdapter<Food, FoodViewHolder>(op) {
             @NonNull
             @Override
@@ -152,7 +152,7 @@ public class FoodList extends AppCompatActivity {
     }
 
     private void loadSuggest() {
-        foodlist.orderByChild("MenuId").equalTo(categoryid).addValueEventListener(new ValueEventListener() {
+        foodlist.orderByChild("menuId").equalTo(categoryid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot postSnapshot:dataSnapshot.getChildren()){
@@ -171,7 +171,7 @@ public class FoodList extends AppCompatActivity {
     private void loadlistFood(String categoryid) {
         FirebaseRecyclerOptions<Food> options =
                 new FirebaseRecyclerOptions.Builder<Food>()
-                        .setQuery(foodlist.orderByChild("MenuId").equalTo(categoryid), Food.class)
+                        .setQuery(foodlist.orderByChild("menuId").equalTo(categoryid), Food.class)
                         .build();
         adapter= new FirebaseRecyclerAdapter<Food,FoodViewHolder>(options)
         {

@@ -91,7 +91,6 @@ public class Home extends AppCompatActivity
     }
 
     private void loadMenu() {
-
         FirebaseRecyclerOptions<Category> options =
                 new FirebaseRecyclerOptions.Builder<Category>()
                         .setQuery(category, Category.class)
