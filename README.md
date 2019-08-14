@@ -5,7 +5,7 @@ This is an androdi App That uses Firebase For its Database Purpose
 It Has Two Parts 
 
 # Client Side
-[Eat It](https://github.com/DAKSHSEMWAL/Eatit/tree/master/Client%20Side/EatIt2)
+[Eat It](Client%20Sideapp/src/main/res/mipmap-xxhdpi/ic_launcher_round.png)
 
   ![EatIT Logo](https://github.com/DAKSHSEMWAL/Eatit/blob/master/Client%20Side/EatIt2/eatitlogo.png)
  
