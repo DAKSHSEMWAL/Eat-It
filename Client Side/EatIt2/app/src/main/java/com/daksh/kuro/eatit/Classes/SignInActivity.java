@@ -2,7 +2,9 @@ package com.daksh.kuro.eatit.Classes;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +23,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 
 public class SignInActivity extends AppCompatActivity {
 
-    EditText editPhone,editPassword;
+    EditText editPhone, editPassword;
     Button btnSignIn;
 
     @Override
@@ -29,10 +31,10 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        editPassword = (MaterialEditText)findViewById(R.id.editPassword);
-        editPhone    = (MaterialEditText)findViewById(R.id.editPhone);
+        editPassword = (MaterialEditText) findViewById(R.id.editPassword);
+        editPhone = (MaterialEditText) findViewById(R.id.editPhone);
 
-        btnSignIn    = (Button)findViewById(R.id.btnSignIn1);
+        btnSignIn = (Button) findViewById(R.id.btnSignIn1);
 
         //Init Firebase
 
@@ -51,22 +53,24 @@ public class SignInActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        if(dataSnapshot.child(editPhone.getText().toString()).exists()) {
+                        if (dataSnapshot.child(editPhone.getText().toString()).exists()) {
                             mDialog.dismiss();
                             //Get User Information
                             User user = dataSnapshot.child(editPhone.getText().toString()).getValue(User.class);
-                                user.setPhone(editPhone.getText().toString());
-                            if (user.getPassword().equals(editPassword.getText().toString())) {
-                                Intent homeIntent = new Intent(SignInActivity.this, HomeActivity.class);
-                                Common.currentUser=user;
-                                startActivity(homeIntent);
-                                finish();
+                            user.setPhone(editPhone.getText().toString());
+                            if (Boolean.parseBoolean(user.getIsStaff())) {
+                                if (user.getPassword().equals(editPassword.getText().toString())) {
+                                    Intent homeIntent = new Intent(SignInActivity.this, HomeActivity.class);
+                                    Common.currentUser = user;
+                                    startActivity(homeIntent);
+                                    finish();
+                                } else {
+                                    Toast.makeText(SignInActivity.this, "Wrong Password!!!", Toast.LENGTH_SHORT).show();
+                                }
                             } else {
-                                Toast.makeText(SignInActivity.this, "Wrong Password!!!", Toast.LENGTH_SHORT).show();
+                               Toast.makeText(SignInActivity.this, "Please Enter A Valid UserId", Toast.LENGTH_SHORT).show();
                             }
-                        }
-                        else
-                        {
+                        } else {
                             mDialog.dismiss();
                             Toast.makeText(SignInActivity.this, "User Does Not Exist", Toast.LENGTH_SHORT).show();
                         }
