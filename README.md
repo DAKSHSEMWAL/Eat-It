@@ -16,4 +16,4 @@ It Has Two Parts
     
 
 # Server Side
-![Eat It](https://github.com/DAKSHSEMWAL/Eatit/blob/master/Server%20Side/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png)
+![Eat It](https://github.com/DAKSHSEMWAL/Eatit/blob/master/ServerSide/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png)
