@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/background1"
     android:padding="16dp"
-    tools:context=".Cart">
+    tools:context=".Classes.CartActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_cart"
@@ -33,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:text="Total: "
+                        android:text="@string/total"
                         android:textSize="20sp"
                         android:textColor="@android:color/white"
                         android:layout_width="wrap_content"

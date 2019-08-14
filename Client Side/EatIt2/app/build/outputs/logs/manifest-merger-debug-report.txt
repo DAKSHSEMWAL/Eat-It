@@ -22,6 +22,7 @@ MERGED from [com.firebaseui:firebase-ui-firestore:5.0.0] C:\Users\dsemw\.gradle\
 MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\dd89116d0327918059c73e8680635877\AndroidManifest.xml:17:1-22:12
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\d8ddcb13bf5fd2d2ced3f8d476da7210\AndroidManifest.xml:2:1-14:12
 MERGED from [com.firebaseui:firebase-ui-storage:5.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\edc4f2ddb639f168940efd78dddaf062\AndroidManifest.xml:2:1-11:12
+MERGED from [com.jakewharton:butterknife:10.1.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\630d9b243f57b33dc07951ad96c7ccdb\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:firebase-firestore:19.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\769d11c4c5086c933d9c514f38b25673\AndroidManifest.xml:2:1-24:12
 MERGED from [com.google.firebase:firebase-auth:17.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\749a3ebd1677fd4d4e210fd7bce0de86\AndroidManifest.xml:17:1-42:12
 MERGED from [com.google.firebase:firebase-storage:17.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\eeda3cf92f98351c41bc1e9c5ae31d75\AndroidManifest.xml:15:1-37:12
@@ -56,6 +57,7 @@ MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\dsemw\.gradl
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\f0dd75b0782b5a30bbc4ddb57b1e6899\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\486ae663642e0208f0eae6ea45a4976d\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.transition:transition:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\0796a7a74b51e1c6439f068406296f6b\AndroidManifest.xml:17:1-22:12
+MERGED from [com.jakewharton:butterknife-runtime:10.1.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\8c4517218be5407b681af485f540213c\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\9097ed8dbf520373b6608b665c11a311\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\a04033a3d3b2655dd223f17399637171\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\decb65778cdf7fe296339207fa16253e\AndroidManifest.xml:17:1-22:12
@@ -224,10 +226,10 @@ MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] C:\Users\dsemw\.gradle\
 		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:12:9-69
 	android:usesCleartextTraffic
 		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:16:9-44
-activity#com.daksh.kuro.eatit.MainActivity
+activity#com.daksh.kuro.eatit.Classes.MainActivity
 ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:18:9-24:20
 	android:name
-		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:18:19-47
+		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:18:19-55
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
 ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:19:13-23:29
 action#android.intent.action.MAIN
@@ -238,38 +240,38 @@ category#android.intent.category.LAUNCHER
 ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:22:17-77
 	android:name
 		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:22:27-74
-activity#com.daksh.kuro.eatit.SignIn
-ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:25:9-44
+activity#com.daksh.kuro.eatit.Classes.SignInActivity
+ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:25:9-60
 	android:name
-		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:25:19-41
-activity#com.daksh.kuro.eatit.SignUp
-ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:26:9-44
+		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:25:19-57
+activity#com.daksh.kuro.eatit.Classes.SignUpActivity
+ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:26:9-60
 	android:name
-		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:26:19-41
-activity#com.daksh.kuro.eatit.Home
+		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:26:19-57
+activity#com.daksh.kuro.eatit.Classes.HomeActivity
 ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:27:9-30:47
 	android:label
 		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:29:13-56
 	android:theme
 		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:30:13-44
 	android:name
-		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:28:13-33
-activity#com.daksh.kuro.eatit.FoodList
-ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:31:9-46
+		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:28:13-49
+activity#com.daksh.kuro.eatit.Classes.FoodListActivity
+ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:31:9-62
 	android:name
-		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:31:19-43
-activity#com.daksh.kuro.eatit.FoodDetail
-ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:32:9-48
+		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:31:19-59
+activity#com.daksh.kuro.eatit.Classes.FoodDetail
+ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:32:9-56
 	android:name
-		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:32:19-45
-activity#com.daksh.kuro.eatit.Cart
-ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:33:9-42
+		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:32:19-53
+activity#com.daksh.kuro.eatit.Classes.CartActivity
+ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:33:9-58
 	android:name
-		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:33:19-39
-activity#com.daksh.kuro.eatit.OrderStatus
-ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:34:9-58
+		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:33:19-55
+activity#com.daksh.kuro.eatit.Classes.Activity
+ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:34:9-63
 	android:name
-		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:34:19-46
+		ADDED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml:34:19-51
 uses-sdk
 INJECTED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from F:\My\Eatit\Client Side\EatIt2\app\src\main\AndroidManifest.xml
@@ -310,6 +312,8 @@ MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\dsemw\.gradle\caches
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\d8ddcb13bf5fd2d2ced3f8d476da7210\AndroidManifest.xml:5:5-44
 MERGED from [com.firebaseui:firebase-ui-storage:5.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\edc4f2ddb639f168940efd78dddaf062\AndroidManifest.xml:7:5-9:41
 MERGED from [com.firebaseui:firebase-ui-storage:5.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\edc4f2ddb639f168940efd78dddaf062\AndroidManifest.xml:7:5-9:41
+MERGED from [com.jakewharton:butterknife:10.1.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\630d9b243f57b33dc07951ad96c7ccdb\AndroidManifest.xml:5:5-44
+MERGED from [com.jakewharton:butterknife:10.1.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\630d9b243f57b33dc07951ad96c7ccdb\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-firestore:19.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\769d11c4c5086c933d9c514f38b25673\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-firestore:19.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\769d11c4c5086c933d9c514f38b25673\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-auth:17.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\749a3ebd1677fd4d4e210fd7bce0de86\AndroidManifest.xml:21:5-44
@@ -378,6 +382,8 @@ MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] C:\Users\dsemw\.gradl
 MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\486ae663642e0208f0eae6ea45a4976d\AndroidManifest.xml:20:5-44
 MERGED from [androidx.transition:transition:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\0796a7a74b51e1c6439f068406296f6b\AndroidManifest.xml:20:5-44
 MERGED from [androidx.transition:transition:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\0796a7a74b51e1c6439f068406296f6b\AndroidManifest.xml:20:5-44
+MERGED from [com.jakewharton:butterknife-runtime:10.1.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\8c4517218be5407b681af485f540213c\AndroidManifest.xml:5:5-44
+MERGED from [com.jakewharton:butterknife-runtime:10.1.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\8c4517218be5407b681af485f540213c\AndroidManifest.xml:5:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\9097ed8dbf520373b6608b665c11a311\AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\9097ed8dbf520373b6608b665c11a311\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\a04033a3d3b2655dd223f17399637171\AndroidManifest.xml:20:5-44

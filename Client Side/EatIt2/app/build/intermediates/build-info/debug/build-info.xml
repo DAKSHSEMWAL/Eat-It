@@ -6,7 +6,7 @@
     density="xxhdpi"
     format="10"
     plugin-version="3.4.2"
-    timestamp="1565765413071"
+    timestamp="1565779039060"
     token="-3739026414976955886"
     verifier="COLD_SWAP_REQUESTED" >
 
@@ -24,14 +24,13 @@
         duration="0" />
 
     <artifact
-        location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
-        type="SPLIT" />
+        location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
+        type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        ir-eligibility="COMPATIBLE"
-        timestamp="1565764548549"
-        verifier="COLD_SWAP_REQUESTED" >
+        timestamp="1565778378503"
+        verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
             type="SPLIT" />
@@ -42,9 +41,6 @@
             location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
         <artifact
-            location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
-            type="SPLIT" />
-        <artifact
             location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
             type="SPLIT" />
         <artifact
@@ -54,7 +50,13 @@
             location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
             type="SPLIT" />
         <artifact
+            location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
+            type="SPLIT" />
+        <artifact
             location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+            type="SPLIT" />
+        <artifact
+            location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
             type="SPLIT" />
         <artifact
             location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
@@ -66,19 +68,15 @@
             location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
             type="SPLIT" />
         <artifact
-            location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
-            type="SPLIT" />
-        <artifact
             location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
             type="SPLIT_MAIN" />
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="R_CLASS_CHANGE"
-        timestamp="1565765006709"
-        verifier="COLD_SWAP_REQUESTED" >
+        timestamp="1565778697573"
+        verifier="BINARY_MANIFEST_FILE_CHANGE" >
         <artifact
-            location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+            location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
             type="SPLIT" />
         <artifact
             location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
@@ -87,19 +85,19 @@
             location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
             type="SPLIT" />
         <artifact
-            location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
+            location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
             type="SPLIT" />
         <artifact
-            location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+            location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
             type="SPLIT" />
         <artifact
             location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
             type="SPLIT" />
         <artifact
-            location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+            location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
             type="SPLIT" />
         <artifact
-            location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+            location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
             type="SPLIT" />
         <artifact
             location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
@@ -110,11 +108,20 @@
     </build>
     <build
         build-mode="COLD"
-        timestamp="1565765413071"
+        ir-eligibility="COMPATIBLE"
+        timestamp="1565778838665"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
-            location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
+            location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
             type="SPLIT" />
+    </build>
+    <build
+        build-mode="COLD"
+        timestamp="1565779039060"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="F:\My\Eatit\Client Side\EatIt2\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
+            type="SPLIT_MAIN" />
     </build>
 
 </instant-run>

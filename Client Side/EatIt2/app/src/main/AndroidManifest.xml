@@ -15,23 +15,23 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Classes.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignIn" />
-        <activity android:name=".SignUp" />
+        <activity android:name=".Classes.SignInActivity" />
+        <activity android:name=".Classes.SignUpActivity" />
         <activity
-            android:name=".Home"
+            android:name=".Classes.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme" />
-        <activity android:name=".FoodList" />
-        <activity android:name=".FoodDetail" />
-        <activity android:name=".Cart" />
-        <activity android:name=".OrderStatus"></activity>
+        <activity android:name=".Classes.FoodListActivity" />
+        <activity android:name=".Classes.FoodDetail" />
+        <activity android:name=".Classes.CartActivity" />
+        <activity android:name=".Classes.Activity"></activity>
     </application>
 
 </manifest>

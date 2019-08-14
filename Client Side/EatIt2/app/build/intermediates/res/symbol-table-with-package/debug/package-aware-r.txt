@@ -1136,6 +1136,7 @@ dimen subtitle_corner_radius
 dimen subtitle_outline_width
 dimen subtitle_shadow_offset
 dimen subtitle_shadow_radius
+dimen text_20
 dimen tooltip_corner_radius
 dimen tooltip_horizontal_padding
 dimen tooltip_margin
@@ -1321,6 +1322,7 @@ drawable round_corners
 drawable side_nav_bar
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+font nabila
 id ALT
 id CTRL
 id FUNCTION
@@ -1990,6 +1992,7 @@ string search_menu_title
 string slogan
 string status_bar_notification_info_overflow
 string title_activity_home
+string total
 string twitter_consumer_key
 string twitter_consumer_secret
 string user_name

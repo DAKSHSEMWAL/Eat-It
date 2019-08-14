@@ -26,23 +26,23 @@
         android:testOnly="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" >
-        <activity android:name="com.daksh.kuro.eatit.MainActivity" >
+        <activity android:name="com.daksh.kuro.eatit.Classes.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.daksh.kuro.eatit.SignIn" />
-        <activity android:name="com.daksh.kuro.eatit.SignUp" />
+        <activity android:name="com.daksh.kuro.eatit.Classes.SignInActivity" />
+        <activity android:name="com.daksh.kuro.eatit.Classes.SignUpActivity" />
         <activity
-            android:name="com.daksh.kuro.eatit.Home"
+            android:name="com.daksh.kuro.eatit.Classes.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme" />
-        <activity android:name="com.daksh.kuro.eatit.FoodList" />
-        <activity android:name="com.daksh.kuro.eatit.FoodDetail" />
-        <activity android:name="com.daksh.kuro.eatit.Cart" />
-        <activity android:name="com.daksh.kuro.eatit.OrderStatus" />
+        <activity android:name="com.daksh.kuro.eatit.Classes.FoodListActivity" />
+        <activity android:name="com.daksh.kuro.eatit.Classes.FoodDetail" />
+        <activity android:name="com.daksh.kuro.eatit.Classes.CartActivity" />
+        <activity android:name="com.daksh.kuro.eatit.Classes.Activity" />
 
         <meta-data
             android:name="com.google.android.gms.version"

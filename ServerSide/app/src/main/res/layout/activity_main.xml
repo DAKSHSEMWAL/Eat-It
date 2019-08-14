@@ -24,6 +24,7 @@
             android:text="@string/slogan"
             android:textSize="@dimen/text_20"
             android:textStyle="bold"
+            android:fontFamily="@font/nabila"
             android:layout_width="200dp"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -33,31 +34,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:weightSum="2">
-
-        <info.hoang8f.widget.FButton
-            android:id="@+id/btnSignUp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_weight="1"
-            app:fButtonColor="@color/btnSignUp"
-            android:text="@string/Button1"
-            android:textColor="@android:color/white"
-            app:shadowColor="@android:color/black"
-            app:shadowEnabled="true"
-            app:shadowHeight="5dp"
-            app:cornerRadius="4dp"/>
+        android:weightSum="1">
 
         <info.hoang8f.widget.FButton
             android:id="@+id/btnSignIn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/dimen_15"
             android:layout_weight="1"
-            app:fButtonColor="@color/btnSignActive"
+            app:fButtonColor="@color/white"
             android:text="@string/Button2"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             app:shadowColor="@android:color/black"
             app:shadowEnabled="true"
             app:shadowHeight="5dp"

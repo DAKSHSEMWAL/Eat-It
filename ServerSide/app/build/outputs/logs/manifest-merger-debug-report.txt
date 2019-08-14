@@ -22,6 +22,7 @@ MERGED from [com.firebaseui:firebase-ui-firestore:5.0.0] C:\Users\dsemw\.gradle\
 MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\eb56346ac3c0995eb2d119cf509da20d\AndroidManifest.xml:17:1-22:12
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\78d1ca0270f22d6e42e51228bc021490\AndroidManifest.xml:2:1-14:12
 MERGED from [com.firebaseui:firebase-ui-storage:5.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\01749a5934111b68559e9594937f7865\AndroidManifest.xml:2:1-11:12
+MERGED from [com.jakewharton:butterknife:10.1.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\40f72f59d2a262ead159f0cd7a57fc3a\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:firebase-firestore:19.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\bee8c0ddb1fff80a6be43e887c468958\AndroidManifest.xml:2:1-24:12
 MERGED from [com.google.firebase:firebase-auth:17.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\44dd06c1d0714b9463f3e616900bb0d2\AndroidManifest.xml:17:1-42:12
 MERGED from [com.google.firebase:firebase-storage:17.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\14e4a65fec82db91201e3f93a8f07cf8\AndroidManifest.xml:15:1-37:12
@@ -56,6 +57,7 @@ MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\dsemw\.gradl
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\32b272a9abfa14819a764332930e95af\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\9eba0626ccca3633f944e221fe912634\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.transition:transition:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\df208ab04f016e92774d07f32a2e1e0f\AndroidManifest.xml:17:1-22:12
+MERGED from [com.jakewharton:butterknife-runtime:10.1.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\8cfed389d9815fc07213066cbebe5595\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\1a91919a6c0db81ae9dfb47ff5b0f0da\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\6b7c2484d6cfcfcb5f096431063ac72f\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\f7b304230f339e92d5a9cd47cf889d60\AndroidManifest.xml:17:1-22:12
@@ -244,6 +246,8 @@ MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\dsemw\.gradle\caches
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\78d1ca0270f22d6e42e51228bc021490\AndroidManifest.xml:5:5-44
 MERGED from [com.firebaseui:firebase-ui-storage:5.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\01749a5934111b68559e9594937f7865\AndroidManifest.xml:7:5-9:41
 MERGED from [com.firebaseui:firebase-ui-storage:5.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\01749a5934111b68559e9594937f7865\AndroidManifest.xml:7:5-9:41
+MERGED from [com.jakewharton:butterknife:10.1.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\40f72f59d2a262ead159f0cd7a57fc3a\AndroidManifest.xml:5:5-44
+MERGED from [com.jakewharton:butterknife:10.1.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\40f72f59d2a262ead159f0cd7a57fc3a\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-firestore:19.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\bee8c0ddb1fff80a6be43e887c468958\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-firestore:19.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\bee8c0ddb1fff80a6be43e887c468958\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-auth:17.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\44dd06c1d0714b9463f3e616900bb0d2\AndroidManifest.xml:21:5-44
@@ -312,6 +316,8 @@ MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] C:\Users\dsemw\.gradl
 MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\9eba0626ccca3633f944e221fe912634\AndroidManifest.xml:20:5-44
 MERGED from [androidx.transition:transition:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\df208ab04f016e92774d07f32a2e1e0f\AndroidManifest.xml:20:5-44
 MERGED from [androidx.transition:transition:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\df208ab04f016e92774d07f32a2e1e0f\AndroidManifest.xml:20:5-44
+MERGED from [com.jakewharton:butterknife-runtime:10.1.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\8cfed389d9815fc07213066cbebe5595\AndroidManifest.xml:5:5-44
+MERGED from [com.jakewharton:butterknife-runtime:10.1.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\8cfed389d9815fc07213066cbebe5595\AndroidManifest.xml:5:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\1a91919a6c0db81ae9dfb47ff5b0f0da\AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\1a91919a6c0db81ae9dfb47ff5b0f0da\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\dsemw\.gradle\caches\transforms-2\files-2.1\6b7c2484d6cfcfcb5f096431063ac72f\AndroidManifest.xml:20:5-44

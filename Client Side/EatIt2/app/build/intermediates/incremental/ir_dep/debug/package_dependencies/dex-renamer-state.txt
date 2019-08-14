@@ -1,4 +1,4 @@
-#Wed Aug 14 12:08:19 IST 2019
+#Wed Aug 14 15:57:29 IST 2019
 base.0=F\:\\My\\Eatit\\Client Side\\EatIt2\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\10
 path.1=classes2.dex
 renamed.1=classes2.dex
