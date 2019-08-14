@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<!--
+  ~ Copyright (c) This code is developed and maintained by Daksh Semwal
+  ~ Github Repository https://gitlab.com/parmindersingh419/roserandroid.git
+  ~
+  -->
+
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

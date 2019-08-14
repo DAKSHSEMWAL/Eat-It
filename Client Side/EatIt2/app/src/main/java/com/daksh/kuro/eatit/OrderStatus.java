@@ -1,18 +1,16 @@
 package com.daksh.kuro.eatit;
 
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.daksh.kuro.eatit.Common.Common;
-import com.daksh.kuro.eatit.Model.Category;
 import com.daksh.kuro.eatit.Model.Request;
-import com.daksh.kuro.eatit.ViewHolder.MenuViewHolder;
 import com.daksh.kuro.eatit.ViewHolder.OrderViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

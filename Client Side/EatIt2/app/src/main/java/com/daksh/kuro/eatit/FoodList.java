@@ -1,24 +1,20 @@
 package com.daksh.kuro.eatit;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.daksh.kuro.eatit.Interface.ItemClickListener;
-import com.daksh.kuro.eatit.Model.Category;
 import com.daksh.kuro.eatit.Model.Food;
 import com.daksh.kuro.eatit.ViewHolder.FoodViewHolder;
-import com.daksh.kuro.eatit.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -135,7 +131,7 @@ public class FoodList extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull FoodViewHolder holder, int position, @NonNull Food model) {
                 holder.food_name.setText(model.getName());
-                Picasso.with(getBaseContext()).load(model.getImage()).into(holder.foodimage);
+                Picasso.get().load(model.getImage()).into(holder.foodimage);
                 final Food local = model;
                 holder.setItemClickListener(new ItemClickListener() {
                     @Override
@@ -186,7 +182,7 @@ public class FoodList extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull FoodViewHolder viewHolder, int position, @NonNull Food model) {
                 viewHolder.food_name.setText(model.getName());
-                Picasso.with(getBaseContext()).load(model.getImage()).into(viewHolder.foodimage);
+                Picasso.get().load(model.getImage()).into(viewHolder.foodimage);
                 final Food local = model;
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override

@@ -7,12 +7,12 @@
     android:background="@mipmap/background1"
     tools:context=".OrderStatus">
     
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listOrder"
         android:background="@android:color/transparent"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </android.support.v7.widget.RecyclerView>
+    </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

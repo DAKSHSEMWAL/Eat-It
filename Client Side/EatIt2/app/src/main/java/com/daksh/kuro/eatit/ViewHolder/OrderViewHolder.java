@@ -1,8 +1,7 @@
 package com.daksh.kuro.eatit.ViewHolder;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewOutlineProvider;
 import android.widget.TextView;
 
 import com.daksh.kuro.eatit.Interface.ItemClickListener;
