@@ -1,0 +1,4 @@
+# Referenced at K:\android projects\EatItServer\app\build\intermediates\merged_manifests\debug\AndroidManifest.xml:24
+-keep class androidx.core.app.CoreComponentFactory { <init>(); }
+# Referenced at K:\android projects\EatItServer\app\build\intermediates\merged_manifests\debug\AndroidManifest.xml:24
+-keep class androidx.multidex.MultiDexApplication { <init>(); }
