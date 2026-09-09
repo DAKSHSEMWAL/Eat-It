@@ -30,6 +30,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.*
 import coil.compose.SubcomposeAsyncImage
 import com.daksh.eatit.designsystem.*
+import com.daksh.eatit.search.DeterministicSearchEngine
 
 @Composable
 fun EatItApp(model: EatItViewModel) {
@@ -122,7 +123,8 @@ private fun EatItSession(state: EatItState, model: EatItViewModel) {
 private fun MenuScreen(state: EatItState, model: EatItViewModel, onDish: (String) -> Unit) {
     var query by rememberSaveable { mutableStateOf("") }
     var category by rememberSaveable { mutableStateOf("") }
-    val shown = state.catalog.dishes.filter { (category.isEmpty() || it.categoryId == category) && it.name.contains(query, ignoreCase = true) }
+    val searched = DeterministicSearchEngine.search(query, state.catalog.dishes, state.catalog.categories)
+    val shown = searched.filter { (category.isEmpty() || it.categoryId == category) }
     LazyVerticalGrid(GridCells.Adaptive(260.dp), contentPadding = PaddingValues(24.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
         item(span = { GridItemSpan(maxLineSpan) }) {

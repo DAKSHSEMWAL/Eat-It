@@ -60,10 +60,10 @@ Work from branch `feat/compose-design-system`. The active Android project is `an
 
 ## P3 — developer platform experiment
 
-- [ ] Build a read-only design-system assistant over public repository docs/tokens/examples.
+- [x] Build a read-only design-system assistant over public repository docs/tokens/examples.
   - Return source/version citations, refuse invented component APIs, and evaluate with curated questions.
   - Keep proprietary employer code and tokens out of the corpus.
-- [ ] Evaluate deterministic menu search before personalized recommendations.
+- [x] Evaluate deterministic menu search before personalized recommendations.
   - Create labeled relevance queries, consent/deletion flows, and a measurable comparison.
   - Never infer dietary or allergen safety from generated text.
 
