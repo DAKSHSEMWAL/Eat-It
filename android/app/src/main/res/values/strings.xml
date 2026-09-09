@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Eat It</string>
+    <string name="title_menu">eat it.</string>
+    <string name="title_staff_workspace">Staff Workspace</string>
+    <string name="title_cart">Your cart</string>
+    <string name="title_orders">Your orders</string>
+    <string name="title_kitchen_queue">Kitchen Queue</string>
+    <string name="title_staff_catalog">Manage Catalog</string>
+    <string name="title_account">Your space</string>
+    <string name="title_design_system">Design system</string>
+    <string name="title_checkout">Checkout</string>
+    <string name="title_order_received">Order received</string>
+    <string name="title_on_menu">On the menu</string>
+
+    <string name="nav_explore">Explore</string>
+    <string name="nav_orders">Orders</string>
+    <string name="nav_account">Account</string>
+    <string name="nav_kitchen_queue">Kitchen Queue</string>
+    <string name="nav_edit_catalog">Edit Catalog</string>
+
+    <string name="demo_badge">DEMO · Explore without placing a real order</string>
+    <string name="offline_badge">Offline catalog cache</string>
+    <string name="updated_badge">Updated catalog</string>
+
+    <string name="hero_tagline">GOOD FOOD. GOOD MOOD.</string>
+    <string name="hero_title">A little fresh.\nA lot to love.</string>
+    <string name="hero_description">Find your next favorite, one delicious dish at a time.</string>
+
+    <string name="category_all">All dishes</string>
+    <string name="section_find_flavor">Find your flavor</string>
+    <string name="section_search_results">Search results</string>
+    <string name="dishes_count">%1$d dishes to explore</string>
+
+    <string name="empty_nothing_here">Nothing here yet</string>
+    <string name="empty_try_another">Try another search or category.</string>
+    <string name="action_clear_filters">Clear filters</string>
+
+    <string name="cart_subtotal">Subtotal</string>
+    <string name="cart_delivery">Delivery</string>
+    <string name="cart_delivery_included">Included</string>
+    <string name="cart_total">Total</string>
+    <string name="action_continue_checkout">Continue to checkout</string>
+
+    <string name="checkout_pay_on_delivery">Pay on delivery</string>
+    <string name="checkout_place_order">Place order</string>
+    <string name="checkout_place_demo_order">Place demo order</string>
+</resources>

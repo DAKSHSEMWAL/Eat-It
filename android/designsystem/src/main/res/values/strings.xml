@@ -1,0 +1,15 @@
+<resources>
+    <string name="eatit_loading">Loading</string>
+    <string name="eatit_search">Search dishes</string>
+    <string name="eatit_clear_search">Clear search</string>
+    <string name="eatit_decrease">Decrease quantity</string>
+    <string name="eatit_increase">Increase quantity</string>
+    <string name="eatit_quantity">Quantity %1$d</string>
+    <string name="eatit_add">Add %1$s to cart</string>
+    <string name="eatit_back">Back</string>
+    <string name="eatit_error">Something went wrong</string>
+    <string name="eatit_retry">Try again</string>
+    <string name="eatit_complete">Complete</string>
+    <string name="eatit_current">Current</string>
+    <string name="eatit_upcoming">Upcoming</string>
+</resources>

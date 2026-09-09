@@ -7,6 +7,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -20,9 +21,10 @@ fun EatItButton(
     label: String, onClick: () -> Unit, modifier: Modifier = Modifier,
     enabled: Boolean = true, loading: Boolean = false, style: EatItButtonStyle = EatItButtonStyle.Primary,
 ) {
+    val loadingLabel = stringResource(R.string.eatit_loading)
     val content: @Composable RowScope.() -> Unit = {
         if (loading) {
-            CircularProgressIndicator(Modifier.size(20.dp).semantics { contentDescription = "Loading" },
+            CircularProgressIndicator(Modifier.size(20.dp).semantics { contentDescription = loadingLabel },
                 color = LocalContentColor.current, strokeWidth = 2.dp)
             Spacer(Modifier.width(EatItTheme.spacing.xs))
         }
@@ -53,8 +55,8 @@ fun EatItTextField(
 @Composable
 fun EatItSearchField(value: String, onValueChange: (String) -> Unit, modifier: Modifier = Modifier) {
     OutlinedTextField(value, onValueChange, modifier.fillMaxWidth(), singleLine = true,
-        label = { Text("Search dishes") }, leadingIcon = { Icon(Icons.Default.Search, null) },
-        trailingIcon = { if (value.isNotEmpty()) IconButton({ onValueChange("") }) { Icon(Icons.Default.Close, "Clear search") } },
+        label = { Text(stringResource(R.string.eatit_search)) }, leadingIcon = { Icon(Icons.Default.Search, null) },
+        trailingIcon = { if (value.isNotEmpty()) IconButton({ onValueChange("") }) { Icon(Icons.Default.Close, stringResource(R.string.eatit_clear_search)) } },
         shape = MaterialTheme.shapes.large)
 }
 @Composable
@@ -63,15 +65,17 @@ fun EatItCategoryChip(label: String, selected: Boolean, onClick: () -> Unit, mod
 }
 @Composable
 fun EatItQuantitySelector(quantity: Int, onChange: (Int) -> Unit, modifier: Modifier = Modifier, enabled: Boolean = true, maximum: Int = 99) {
+    require(maximum >= 0 && quantity in 0..maximum)
+    val quantityLabel = stringResource(R.string.eatit_quantity, quantity)
     Row(modifier.semantics { isTraversalGroup = true }, verticalAlignment = Alignment.CenterVertically) {
         IconButton({ onChange(quantity - 1) }, enabled = enabled && quantity > 0) {
-            Icon(Icons.Default.Remove, "Decrease quantity")
+            Icon(Icons.Default.Remove, stringResource(R.string.eatit_decrease))
         }
         Text("$quantity", Modifier.padding(horizontal = 8.dp).semantics {
-            contentDescription = "Quantity $quantity"; liveRegion = LiveRegionMode.Polite
+            contentDescription = quantityLabel; liveRegion = LiveRegionMode.Polite
         }, style = MaterialTheme.typography.titleMedium)
         IconButton({ onChange(quantity + 1) }, enabled = enabled && quantity < maximum) {
-            Icon(Icons.Default.Add, "Increase quantity")
+            Icon(Icons.Default.Add, stringResource(R.string.eatit_increase))
         }
     }
 }
@@ -92,7 +96,7 @@ fun EatItBadge(label: String, tone: EatItTone = EatItTone.Neutral, modifier: Mod
 @Composable
 fun EatItSectionHeading(title: String, subtitle: String? = null, modifier: Modifier = Modifier) {
     Column(modifier, verticalArrangement = Arrangement.spacedBy(4.dp)) {
-        Text(title, style = MaterialTheme.typography.headlineSmall)
+        Text(title, Modifier.semantics { heading() }, style = MaterialTheme.typography.headlineSmall)
         subtitle?.let { Text(it, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant) }
     }
 }
@@ -101,15 +105,15 @@ fun EatItFoodCard(
     name: String, price: String, category: String, onClick: () -> Unit, onAdd: () -> Unit,
     image: @Composable () -> Unit, modifier: Modifier = Modifier, enabled: Boolean = true,
 ) {
-    Card(onClick, modifier, shape = MaterialTheme.shapes.large,
+    Card(onClick, modifier, enabled = enabled, shape = MaterialTheme.shapes.large,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow)) {
         Box(Modifier.fillMaxWidth().height(EatItTheme.sizing.foodImage)) { image() }
         Column(Modifier.padding(EatItTheme.spacing.md), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Text(category, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.primary)
             Text(name, style = MaterialTheme.typography.titleLarge)
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
-                Text(price, style = MaterialTheme.typography.titleMedium)
-                FilledTonalIconButton(onAdd, enabled = enabled) { Icon(Icons.Default.Add, "Add $name to cart") }
+                Text(price, Modifier.weight(1f), style = MaterialTheme.typography.titleMedium)
+                FilledTonalIconButton(onAdd, enabled = enabled) { Icon(Icons.Default.Add, stringResource(R.string.eatit_add, name)) }
             }
         }
     }
@@ -120,26 +124,27 @@ fun EatItEmptyState(title: String, message: String, modifier: Modifier = Modifie
     Column(modifier.fillMaxWidth().padding(32.dp), horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp)) {
         Icon(icon, null, Modifier.size(48.dp), tint = MaterialTheme.colorScheme.primary)
-        Text(title, style = MaterialTheme.typography.headlineSmall)
+        Text(title, Modifier.semantics { heading() }, style = MaterialTheme.typography.headlineSmall)
         Text(message, style = MaterialTheme.typography.bodyLarge)
         actionLabel?.let { EatItButton(it, onAction) }
     }
 }
 @Composable
 fun EatItErrorState(message: String, onRetry: () -> Unit, modifier: Modifier = Modifier) {
-    EatItEmptyState("Something went wrong", message, modifier, Icons.Default.ErrorOutline, "Try again", onRetry)
+    EatItEmptyState(stringResource(R.string.eatit_error), message, modifier, Icons.Default.ErrorOutline, stringResource(R.string.eatit_retry), onRetry)
 }
 @Composable
 fun EatItLoadingState(modifier: Modifier = Modifier) {
+    val loadingLabel = stringResource(R.string.eatit_loading)
     Box(modifier.fillMaxWidth().padding(48.dp), contentAlignment = Alignment.Center) {
-        CircularProgressIndicator(Modifier.semantics { contentDescription = "Loading content" })
+        CircularProgressIndicator(Modifier.semantics { contentDescription = loadingLabel })
     }
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EatItTopBar(title: String, onBack: (() -> Unit)? = null, actions: @Composable RowScope.() -> Unit = {}) {
     TopAppBar(title = { Text(title, style = MaterialTheme.typography.titleLarge) },
-        navigationIcon = { onBack?.let { IconButton(it) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back") } } },
+        navigationIcon = { onBack?.let { IconButton(it) { Icon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(R.string.eatit_back)) } } },
         actions = actions)
 }
 @Composable

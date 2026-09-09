@@ -1,0 +1,33 @@
+[versions]
+agp = "9.4.0"
+google-services = "4.4.2"
+appcompat = "1.7.0"
+material = "1.12.0"
+constraintlayout = "2.2.0"
+cardview = "1.0.0"
+recyclerview = "1.4.0"
+firebase-database = "21.0.0"
+firebase-auth = "23.1.0"
+firebase-storage = "21.0.1"
+picasso = "2.8"
+junit = "4.13.2"
+androidx-test-runner = "1.6.2"
+espresso = "3.6.1"
+
+[libraries]
+appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
+constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
+recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
+firebase-database = { module = "com.google.firebase:firebase-database", version.ref = "firebase-database" }
+firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebase-auth" }
+firebase-storage = { module = "com.google.firebase:firebase-storage", version.ref = "firebase-storage" }
+picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
+junit = { module = "junit:junit", version.ref = "junit" }
+androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test-runner" }
+espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+google-services = { id = "com.google.gms.google-services", version.ref = "google-services" }

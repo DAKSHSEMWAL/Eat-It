@@ -1,0 +1,29 @@
+{
+  "rules": {
+    "Category": {
+      ".read": true,
+      ".write": "auth != null && auth.token.staff == true"
+    },
+    "Food": {
+      ".read": true,
+      ".write": "auth != null && auth.token.staff == true"
+    },
+    "Requests": {
+      "$orderId": {
+        ".read": "auth != null && (data.child('userId').val() === auth.uid || auth.token.staff == true)",
+        ".write": "auth != null && auth.token.staff == true",
+        ".validate": "newData.hasChildren(['userId', 'phone', 'name', 'address', 'totalPaise', 'status', 'foods', 'createdAt'])"
+      },
+      ".read": "auth != null && auth.token.staff == true",
+      ".write": false
+    },
+    "Idempotency": {
+      "$uid": {
+        "$requestId": {
+          ".read": "auth != null && auth.uid === $uid",
+          ".write": false
+        }
+      }
+    }
+  }
+}

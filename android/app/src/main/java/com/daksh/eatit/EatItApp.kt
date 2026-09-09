@@ -34,6 +34,11 @@ import com.daksh.eatit.designsystem.*
 @Composable
 fun EatItApp(model: EatItViewModel) {
     val state by model.state.collectAsStateWithLifecycle()
+    key(state.customer?.id) { EatItSession(state, model) }
+}
+
+@Composable
+private fun EatItSession(state: EatItState, model: EatItViewModel) {
     val nav = rememberNavController()
     val entry by nav.currentBackStackEntryAsState()
     val route = entry?.destination?.route ?: "menu"
@@ -44,40 +49,47 @@ fun EatItApp(model: EatItViewModel) {
     LaunchedEffect(state.placedOrder) {
         state.placedOrder?.let { nav.navigate("confirmation/$it") { popUpTo("menu") }; model.clearOrder() }
     }
-    LaunchedEffect(state.customer?.id) {
-        nav.navigate("menu") { popUpTo(nav.graph.id) { inclusive = true }; launchSingleTop = true }
-    }
-    val mainRoute = route in listOf("menu", "orders", "account", "cart")
+    val mainRoute = route in listOf("menu", "orders", "account", "cart", "staff_catalog")
     Scaffold(
         snackbarHost = { SnackbarHost(snackbar) },
         topBar = { EatItTopBar(
             when (route) {
-                "menu" -> "eat it."; "cart" -> "Your cart"; "orders" -> "Your orders"
+                "menu" -> if (state.isStaff) "Staff Workspace" else "eat it."
+                "cart" -> "Your cart"; "orders" -> if (state.isStaff) "Kitchen Queue" else "Your orders"
+                "staff_catalog" -> "Manage Catalog"
                 "account" -> "Your space"; "gallery" -> "Design system"; "checkout" -> "Checkout"
                 "confirmation/{id}" -> "Order received"; else -> "On the menu"
             },
             onBack = if (!mainRoute && state.customer != null) ({ nav.popBackStack(); Unit }) else null,
-            actions = { if (state.customer != null && route != "cart") IconButton({ nav.navigate("cart") { launchSingleTop = true } }) {
-                BadgedBox(badge = { if (state.cart.isNotEmpty()) Badge { Text("${state.cart.sumOf { it.quantity }}") } }) {
-                    Icon(Icons.Default.ShoppingBag, "Open cart")
+            actions = {
+                if (state.customer != null && !state.isStaff && route != "cart") IconButton({ nav.navigate("cart") { launchSingleTop = true } }) {
+                    BadgedBox(badge = { if (state.cart.isNotEmpty()) Badge { Text("${state.cart.sumOf { it.quantity }}") } }) {
+                        Icon(Icons.Default.ShoppingBag, "Open cart")
+                    }
                 }
-            } },
+            },
         ) },
-        bottomBar = {
-            if (mainRoute && state.customer != null) NavigationBar {
-                listOf(Triple("menu", "Explore", Icons.Default.RestaurantMenu),
-                    Triple("orders", "Orders", Icons.AutoMirrored.Filled.ReceiptLong),
-                    Triple("account", "Account", Icons.Default.PersonOutline)).forEach { (destination, label, icon) ->
-                    NavigationBarItem(selected = route == destination, onClick = {
-                        nav.navigate(destination) { popUpTo("menu") { saveState = true }; launchSingleTop = true; restoreState = true }
-                    }, icon = { Icon(icon, null) }, label = { Text(label) })
-                }
-            }
-        },
     ) { padding ->
-        Box(Modifier.fillMaxSize().padding(padding).imePadding(), contentAlignment = Alignment.TopCenter) {
+        val destinations = if (state.isStaff) listOf(
+            EatItDestination("orders", "Kitchen Queue", Icons.AutoMirrored.Filled.ReceiptLong),
+            EatItDestination("staff_catalog", "Edit Catalog", Icons.Default.Edit),
+            EatItDestination("account", "Account", Icons.Default.PersonOutline)
+        ) else listOf(
+            EatItDestination("menu", "Explore", Icons.Default.RestaurantMenu),
+            EatItDestination("orders", "Orders", Icons.AutoMirrored.Filled.ReceiptLong),
+            EatItDestination("account", "Account", Icons.Default.PersonOutline)
+        )
+
+        EatItNavigationLayout(
+            destinations = destinations,
+            selected = route, visible = mainRoute && state.customer != null,
+            onSelect = { destination -> nav.navigate(destination) {
+                popUpTo(if (state.isStaff) "orders" else "menu") { saveState = true }; launchSingleTop = true; restoreState = true
+            } }, modifier = Modifier.padding(padding).imePadding(),
+        ) {
+        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
             if (state.customer == null) AuthScreen(state, model)
-            else NavHost(nav, "menu", modifier = Modifier.fillMaxSize()) {
+            else NavHost(nav, if (state.isStaff) "orders" else "menu", modifier = Modifier.fillMaxSize()) {
                 composable("menu") { MenuScreen(state, model, { nav.navigate("dish/$it") }) }
                 composable("dish/{id}") { backStack ->
                     val dish = state.catalog.dishes.find { it.id == backStack.arguments?.getString("id") }
@@ -88,6 +100,7 @@ fun EatItApp(model: EatItViewModel) {
                 composable("cart") { CartScreen(state, model, { nav.navigate("menu") }, { nav.navigate("checkout") }) }
                 composable("checkout") { CheckoutScreen(state, model) }
                 composable("orders") { OrdersScreen(state, model) }
+                composable("staff_catalog") { StaffCatalogEditScreen(state, model) }
                 composable("account") { AccountScreen(state, model) { nav.navigate("gallery") } }
                 composable("gallery") { EatItGallery() }
                 composable("confirmation/{id}") { backStack ->
@@ -103,6 +116,7 @@ fun EatItApp(model: EatItViewModel) {
             }
         }
     }
+    }
 }
 @Composable
 private fun MenuScreen(state: EatItState, model: EatItViewModel, onDish: (String) -> Unit) {
@@ -113,7 +127,11 @@ private fun MenuScreen(state: EatItState, model: EatItViewModel, onDish: (String
         verticalArrangement = Arrangement.spacedBy(16.dp), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
         item(span = { GridItemSpan(maxLineSpan) }) {
             Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
-                if (BuildConfig.DEMO) EatItBadge("DEMO · Explore without placing a real order", EatItTone.Attention)
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    if (BuildConfig.DEMO) EatItBadge("DEMO · Explore without placing a real order", EatItTone.Attention)
+                    if (state.catalog.isOffline) EatItBadge("Offline catalog cache", EatItTone.Attention)
+                    else if (state.catalog.lastSyncedTimestamp > 0L) EatItBadge("Updated catalog", EatItTone.Positive)
+                }
                 Surface(color = MaterialTheme.colorScheme.primary, contentColor = MaterialTheme.colorScheme.onPrimary, shape = MaterialTheme.shapes.extraLarge) {
                     Column(Modifier.fillMaxWidth().padding(28.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                         Text("GOOD FOOD. GOOD MOOD.", style = MaterialTheme.typography.labelLarge)
@@ -158,7 +176,7 @@ private fun DishImage(dish: Dish, modifier: Modifier = Modifier) {
 }
 @Composable
 private fun DetailScreen(dish: Dish, state: EatItState, model: EatItViewModel, onCart: () -> Unit) {
-    Column(Modifier.fillMaxWidth().widthIn(max = 720.dp).verticalScroll(rememberScrollState()).padding(24.dp), verticalArrangement = Arrangement.spacedBy(24.dp)) {
+    Column(Modifier.widthIn(max = EatItTheme.sizing.readingWidth).fillMaxWidth().verticalScroll(rememberScrollState()).padding(24.dp), verticalArrangement = Arrangement.spacedBy(24.dp)) {
         Box(Modifier.fillMaxWidth().height(280.dp).clip(MaterialTheme.shapes.extraLarge)) { DishImage(dish) }
         EatItBadge(state.catalog.categories.find { it.id == dish.categoryId }?.name ?: "On the menu", EatItTone.Positive)
         Text(dish.name, style = MaterialTheme.typography.headlineLarge)
@@ -173,6 +191,20 @@ private fun DetailScreen(dish: Dish, state: EatItState, model: EatItViewModel, o
 private fun CartScreen(state: EatItState, model: EatItViewModel, onExplore: () -> Unit, onCheckout: () -> Unit) {
     if (state.cart.isEmpty()) { EatItEmptyState("Make room for something good", "Your cart is empty. Add a dish to get started.", actionLabel = "Explore menu", onAction = onExplore); return }
     LazyColumn(contentPadding = PaddingValues(24.dp), verticalArrangement = Arrangement.spacedBy(20.dp)) {
+        if (state.cartIssues.isNotEmpty()) {
+            item {
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    state.cartIssues.forEach { issue ->
+                        val text = when (issue.issueType) {
+                            CartIssueType.PRICE_CHANGED -> "Price for ${issue.dishName} changed from ${money(issue.oldPricePaise)} to ${money(issue.newPricePaise)}."
+                            CartIssueType.REMOVED -> "${issue.dishName} is no longer available and was removed from your cart."
+                        }
+                        EatItNotice("Menu Update", text, tone = EatItTone.Attention)
+                    }
+                    EatItButton("Acknowledge updates", model::clearCartIssues, style = EatItButtonStyle.Quiet)
+                }
+            }
+        }
         items(state.cart, key = { it.dish.id }) { line ->
             Card {
                 Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -223,19 +255,87 @@ private fun OrdersScreen(state: EatItState, model: EatItViewModel) {
     when {
         state.ordersLoading -> EatItLoadingState()
         state.ordersError != null -> EatItErrorState(state.ordersError, model::reloadOrders)
-        state.orders.isEmpty() -> EatItEmptyState("Your next favorite is waiting", "Orders will appear here after checkout.", icon = Icons.AutoMirrored.Filled.ReceiptLong)
+        state.orders.isEmpty() -> EatItEmptyState(
+            if (state.isStaff) "Kitchen Queue Empty" else "Your next favorite is waiting",
+            if (state.isStaff) "New customer orders will appear here." else "Orders will appear here after checkout.",
+            icon = Icons.AutoMirrored.Filled.ReceiptLong
+        )
         else -> LazyColumn(contentPadding = PaddingValues(24.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
             items(state.orders, key = { it.id }) { order ->
                 Card {
                     Column(Modifier.fillMaxWidth().padding(20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                         Text("Order ${order.id.takeLast(8)}", style = MaterialTheme.typography.titleLarge)
-                        EatItBadge(when (order.status) { "0" -> "Placed"; "1" -> "On its way"; "2" -> "Delivered"; else -> "Status unavailable" }, EatItTone.Positive)
+                        val step = order.status.toIntOrNull()
+                        if (step != null && step in 0..2) EatItOrderProgress(listOf("Placed", "On its way", "Delivered"), step)
+                        else EatItBadge("Status unavailable")
                         Text(order.address)
                         Text(money(order.totalPaise), style = MaterialTheme.typography.titleMedium)
+
+                        if (state.isStaff) {
+                            val next = nextOrderStatus(order.status)
+                            if (next != null) {
+                                EatItButton("Advance to ${orderStatusLabel(next)}", {
+                                    model.updateOrderStatus(order.id, next)
+                                }, enabled = !state.busy)
+                            } else {
+                                EatItBadge("Completed", EatItTone.Positive)
+                            }
+                        }
                     }
                 }
             }
         }
+    }
+}
+@Composable
+private fun StaffCatalogEditScreen(state: EatItState, model: EatItViewModel) {
+    var selectedDish by remember { mutableStateOf<Dish?>(null) }
+
+    LazyColumn(contentPadding = PaddingValues(24.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+        item {
+            EatItSectionHeading("Menu Catalog Management", "Tap a dish to update its details or pricing.")
+        }
+        items(state.catalog.dishes, key = { it.id }) { dish ->
+            Card(onClick = { selectedDish = dish }) {
+                Row(Modifier.fillMaxWidth().padding(16.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                    Column(Modifier.weight(1f)) {
+                        Text(dish.name, style = MaterialTheme.typography.titleMedium)
+                        Text(money(dish.pricePaise), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.primary)
+                    }
+                    Icon(Icons.Default.Edit, "Edit dish")
+                }
+            }
+        }
+    }
+
+    selectedDish?.let { dish ->
+        var name by remember(dish) { mutableStateOf(dish.name) }
+        var priceInput by remember(dish) { mutableStateOf((dish.pricePaise / 100.0).toString()) }
+        var description by remember(dish) { mutableStateOf(dish.description) }
+
+        AlertDialog(
+            onDismissRequest = { selectedDish = null },
+            title = { Text("Edit ${dish.name}") },
+            text = {
+                Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    EatItTextField(name, { name = it }, "Dish Name")
+                    EatItTextField(priceInput, { priceInput = it }, "Price (₹)", keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number))
+                    EatItTextField(description, { description = it }, "Description", singleLine = false)
+                }
+            },
+            confirmButton = {
+                EatItButton("Save changes", {
+                    val parsed = parsePrice(priceInput)
+                    if (parsed != null && name.isNotBlank()) {
+                        model.updateDish(dish.copy(name = name.trim(), pricePaise = parsed, description = description.trim()))
+                        selectedDish = null
+                    }
+                })
+            },
+            dismissButton = {
+                EatItButton("Cancel", { selectedDish = null }, style = EatItButtonStyle.Quiet)
+            }
+        )
     }
 }
 @Composable
@@ -244,7 +344,8 @@ private fun AccountScreen(state: EatItState, model: EatItViewModel, onGallery: (
         Icon(Icons.Default.AccountCircle, null, Modifier.size(72.dp), tint = MaterialTheme.colorScheme.primary)
         EatItSectionHeading(state.customer?.name?.ifBlank { "Welcome back" } ?: "Welcome", state.customer?.email)
         Text("Good food starts with a little curiosity.", style = MaterialTheme.typography.bodyLarge)
-        if (BuildConfig.DEMO) EatItBadge("Demo account", EatItTone.Attention)
+        if (state.isStaff) EatItBadge("Staff Workspace Access", EatItTone.Positive)
+        else if (BuildConfig.DEMO) EatItBadge("Demo account", EatItTone.Attention)
         if (BuildConfig.DEBUG) EatItButton("Explore design system", onGallery, style = EatItButtonStyle.Secondary)
         EatItButton("Sign out", model::signOut, enabled = !state.busy, style = EatItButtonStyle.Quiet)
     }
@@ -261,7 +362,7 @@ private fun AuthScreen(state: EatItState, model: EatItViewModel) {
     Column(Modifier.widthIn(max = 560.dp).fillMaxWidth().verticalScroll(rememberScrollState()).padding(24.dp), verticalArrangement = Arrangement.spacedBy(20.dp)) {
         Text("Your appetite.\nOur happy place.", style = MaterialTheme.typography.displaySmall)
         Text(if (register) "Create an account to find your favorites." else "Welcome back. Something delicious is waiting.", style = MaterialTheme.typography.bodyLarge)
-        if (BuildConfig.DEMO) EatItBadge("Demo · Use any valid email and 8-character password", EatItTone.Attention)
+        if (BuildConfig.DEMO) EatItBadge("Demo · Use staff@example.com for Staff Mode", EatItTone.Attention)
         if (register) EatItTextField(name, { name = it }, "Name", enabled = !state.busy,
             error = if (attempted && name.trim().length < 2) "Enter your name" else null)
         EatItTextField(email, { email = it }, "Email", enabled = !state.busy, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),

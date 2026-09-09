@@ -1,19 +1,14 @@
-# Eatit
+# Eat It
 
-This is an androdi App That uses Firebase For its Database Purpose
+Eat It is being modernized as a Kotlin and Jetpack Compose food-ordering app with a reusable Material 3 design system.
 
-It Has Two Parts 
+The active project is [`android/`](android/README.md). It contains:
 
-# Client Side
-[Eat It](https://github.com/DAKSHSEMWAL/Eat-It/tree/master/Client%20Side/EatIt2)
+- `app`: customer menu, search, dish details, cart, checkout, orders and account flows.
+- `designsystem`: semantic foundations, reusable components, adaptive patterns and a debug gallery.
+- `demoDebug`: a local, safe-to-explore experience that does not place real orders.
+- `live`: a Firebase migration shell whose secure checkout backend and account migration are still required.
 
-![Eat It](https://github.com/DAKSHSEMWAL/Eat-It/blob/master/Client%20Side/EatIt2/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png)
- 
- * Link To Vidio Showing The Working oF Clinet Side App
-  [![](http://img.youtube.com/vi/-nLGb7KCfAU/0.jpg)](http://www.youtube.com/watch?v=-nLGb7KCfAU "Eat IT Client Side App")
-  
-  ![All Screen](https://github.com/DAKSHSEMWAL/Eat-It/blob/master/Client%20Side/EatIt2/back.png)
-    
+The original Java/XML apps remain in `Client Side/EatIt2` and `ServerSide/EatItServer` as migration references.
 
-# Server Side
-![Eat It](https://github.com/DAKSHSEMWAL/Eat-It/blob/master/ServerSide/EatItServer/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png)
+Read the [design-system contract](docs/DESIGN_SYSTEM.md), [capability roadmap](docs/CAPABILITY_ROADMAP.md), and [Gemini task list](docs/GEMINI_TASKS.md).

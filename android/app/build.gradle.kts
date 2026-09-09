@@ -1,7 +1,6 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.plugin.compose")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.compose.compiler)
 }
 // Demo builds never require a Firebase project. Configure live through the documented file.
 if (file("google-services.json").exists()) apply(plugin = "com.google.gms.google-services")
@@ -23,26 +22,29 @@ android {
     }
     buildFeatures { compose = true; buildConfig = true }
     compileOptions { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
-    kotlinOptions { jvmTarget = "17" }
     packaging { resources.excludes += "/META-INF/{AL2.0,LGPL2.1}" }
 }
 dependencies {
     implementation(project(":designsystem"))
-    implementation("androidx.activity:activity-compose:1.10.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.9.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.0")
-    implementation("androidx.navigation:navigation-compose:2.8.9")
-    implementation("io.coil-kt:coil-compose:2.7.0")
-    implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-database")
-    implementation("com.google.firebase:firebase-functions")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2")
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2025.04.01"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    androidTestImplementation("androidx.test:runner:1.6.2")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
-    debugImplementation("androidx.compose.ui:ui-tooling")
+    implementation(libs.activity.compose)
+    implementation(libs.lifecycle.runtime.compose)
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.navigation.compose)
+    implementation(libs.coil.compose)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.functions)
+    implementation(libs.coroutines.play.services)
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    annotationProcessor(libs.room.compiler)
+    implementation(libs.work.runtime.ktx)
+    testImplementation(libs.junit)
+    testImplementation(libs.coroutines.test)
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.compose.test.junit)
+    androidTestImplementation(libs.androidx.test.runner)
+    debugImplementation(libs.compose.test.manifest)
+    debugImplementation(libs.compose.tooling)
 }

@@ -1,5 +1,7 @@
 # Eat-It Compose modernization — work-in-progress handoff
 
+> Update (2026-09-09): the original checkpoint below is superseded where it discusses build status. The project now uses Gradle 9.7.1, AGP 9.4.0, built-in Kotlin 2.2.10, Kotlin DSL, and `gradle/libs.versions.toml`. `assembleDemoDebug`, demo unit tests, app/design-system lint, and design-system Android-test APK compilation pass. See `android/README.md`, `docs/DESIGN_SYSTEM.md`, and `docs/GEMINI_TASKS.md`. On-device tests remain unexecuted because the installed API 30 emulator exits at startup and reports a missing/deprecated hypervisor setup.
+
 ## User request
 Modernize https://github.com/DAKSHSEMWAL/Eat-It using Jetpack Compose and create an entire design system. User then requested moving the work to Codex. Continue this implementation, validate it, and open a draft PR; do not treat this checkpoint as complete.
 
