@@ -6,13 +6,15 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [CategoryEntity::class, DishEntity::class, CartLineEntity::class, CatalogSyncMetaEntity::class],
-    version = 1,
+    entities = [CategoryEntity::class, DishEntity::class, CartLineEntity::class, CatalogSyncMetaEntity::class, FavoriteEntity::class, SavedAddressEntity::class],
+    version = 2,
     exportSchema = false
 )
 abstract class EatItDatabase : RoomDatabase() {
     abstract fun catalogDao(): CatalogDao
     abstract fun cartDao(): CartDao
+    abstract fun favoriteDao(): FavoriteDao
+    abstract fun savedAddressDao(): SavedAddressDao
 
     companion object {
         @Volatile

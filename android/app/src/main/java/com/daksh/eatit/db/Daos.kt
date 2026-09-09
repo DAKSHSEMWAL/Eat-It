@@ -62,3 +62,27 @@ interface CartDao {
         lines.forEach { insertCartLine(it) }
     }
 }
+
+@Dao
+interface FavoriteDao {
+    @Query("SELECT dishId FROM favorites WHERE userId = :userId")
+    fun getFavoriteDishIds(userId: String): Flow<List<String>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addFavorite(favorite: FavoriteEntity)
+
+    @Query("DELETE FROM favorites WHERE userId = :userId AND dishId = :dishId")
+    suspend fun removeFavorite(userId: String, dishId: String)
+}
+
+@Dao
+interface SavedAddressDao {
+    @Query("SELECT * FROM saved_addresses WHERE userId = :userId")
+    fun getSavedAddresses(userId: String): Flow<List<SavedAddressEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAddress(address: SavedAddressEntity)
+
+    @Query("DELETE FROM saved_addresses WHERE id = :id AND userId = :userId")
+    suspend fun deleteAddress(id: String, userId: String)
+}

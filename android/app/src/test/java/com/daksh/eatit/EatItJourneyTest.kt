@@ -80,10 +80,25 @@ class EatItJourneyTest {
             Customer("demo", "Food lover", "demo@example.com")
         )
         private val purchases = MutableStateFlow<List<Purchase>>(emptyList())
+        private val favoriteIds = MutableStateFlow<Set<String>>(emptySet())
+        private val addresses = MutableStateFlow<List<SavedAddress>>(emptyList())
 
         override fun catalog() = flowOf(DemoCatalog)
         override fun orders() = purchases
         override fun staffOrders() = purchases
+        override fun favorites() = favoriteIds
+        override fun savedAddresses() = addresses
+
+        override suspend fun toggleFavorite(dishId: String) {
+            val current = favoriteIds.value
+            favoriteIds.value = if (current.contains(dishId)) current - dishId else current + dishId
+        }
+        override suspend fun saveAddress(address: SavedAddress) {
+            addresses.value = addresses.value.filterNot { it.id == address.id } + address
+        }
+        override suspend fun deleteAddress(id: String) {
+            addresses.value = addresses.value.filterNot { it.id == id }
+        }
 
         override suspend fun authenticate(email: String, password: String, name: String?) {
             customer.value = Customer("demo", name ?: "Food lover", email)

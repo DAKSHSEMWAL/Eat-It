@@ -18,6 +18,8 @@ data class Delivery(val name: String = "", val phone: String = "", val address: 
     fun valid() = name.trim().length >= 2 && phone.matches(Regex("\\+?[0-9]{10,15}")) && address.trim().length >= 10
 }
 data class Purchase(val id: String, val totalPaise: Long, val status: String, val address: String)
+data class Favorite(val userId: String, val dishId: String)
+data class SavedAddress(val id: String, val userId: String, val label: String, val name: String, val phone: String, val address: String, val isDefault: Boolean = false)
 data class Catalog(
     val categories: List<Category>,
     val dishes: List<Dish>,

@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.daksh.eatit.Category
 import com.daksh.eatit.Dish
+import com.daksh.eatit.SavedAddress
 
 @Entity(tableName = "categories")
 data class CategoryEntity(
@@ -54,4 +55,41 @@ data class CartLineEntity(
 data class CatalogSyncMetaEntity(
     @PrimaryKey val key: String = "meta",
     val lastSyncedTimestamp: Long = 0L
+)
+
+@Entity(tableName = "favorites", primaryKeys = ["userId", "dishId"])
+data class FavoriteEntity(
+    val userId: String,
+    val dishId: String
+)
+
+@Entity(tableName = "saved_addresses")
+data class SavedAddressEntity(
+    @PrimaryKey val id: String,
+    val userId: String,
+    val label: String,
+    val name: String,
+    val phone: String,
+    val address: String,
+    val isDefault: Boolean
+) {
+    fun toModel() = SavedAddress(
+        id = id,
+        userId = userId,
+        label = label,
+        name = name,
+        phone = phone,
+        address = address,
+        isDefault = isDefault
+    )
+}
+
+fun SavedAddress.toEntity() = SavedAddressEntity(
+    id = id,
+    userId = userId,
+    label = label,
+    name = name,
+    phone = phone,
+    address = address,
+    isDefault = isDefault
 )

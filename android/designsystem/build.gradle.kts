@@ -15,6 +15,7 @@ dependencies {
     api(libs.compose.icons)
     api(libs.compose.preview)
     debugImplementation(libs.compose.tooling)
+    testImplementation(libs.junit)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.compose.test.junit)
     androidTestImplementation(libs.androidx.test.runner)

@@ -16,6 +16,11 @@ interface EatItRepository {
     fun catalog(): Flow<Catalog>
     fun orders(): Flow<List<Purchase>>
     fun staffOrders(): Flow<List<Purchase>>
+    fun favorites(): Flow<Set<String>>
+    fun savedAddresses(): Flow<List<SavedAddress>>
+    suspend fun toggleFavorite(dishId: String)
+    suspend fun saveAddress(address: SavedAddress)
+    suspend fun deleteAddress(id: String)
     suspend fun authenticate(email: String, password: String, name: String?)
     suspend fun resetPassword(email: String)
     suspend fun checkout(lines: List<CartLine>, delivery: Delivery, requestId: String): String
@@ -29,9 +34,29 @@ class DemoRepository(context: Context) : EatItRepository {
     private val purchases = MutableStateFlow(readOrders())
     private val demoCatalogFlow = MutableStateFlow(DemoCatalog)
 
+    private val favoriteIds = MutableStateFlow<Set<String>>(setOf("1", "3"))
+    private val addresses = MutableStateFlow<List<SavedAddress>>(listOf(
+        SavedAddress("1", "demo", "Home", "Food lover", "+12345678901", "123 Green Avenue, Apt 4B", isDefault = true)
+    ))
+
     override fun catalog() = demoCatalogFlow
     override fun orders(): Flow<List<Purchase>> = purchases
     override fun staffOrders(): Flow<List<Purchase>> = purchases
+    override fun favorites(): Flow<Set<String>> = favoriteIds
+    override fun savedAddresses(): Flow<List<SavedAddress>> = addresses
+
+    override suspend fun toggleFavorite(dishId: String) {
+        val current = favoriteIds.value
+        favoriteIds.value = if (current.contains(dishId)) current - dishId else current + dishId
+    }
+
+    override suspend fun saveAddress(address: SavedAddress) {
+        addresses.value = addresses.value.filterNot { it.id == address.id } + address
+    }
+
+    override suspend fun deleteAddress(id: String) {
+        addresses.value = addresses.value.filterNot { it.id == id }
+    }
 
     override suspend fun authenticate(email: String, password: String, name: String?) {
         val role = if (email.lowercase().startsWith("staff")) UserRole.STAFF else UserRole.CUSTOMER
@@ -72,6 +97,24 @@ class DemoRepository(context: Context) : EatItRepository {
 class FirebaseRepository : EatItRepository {
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseDatabase.getInstance()
+    private val favoriteIds = MutableStateFlow<Set<String>>(emptySet())
+    private val addresses = MutableStateFlow<List<SavedAddress>>(emptyList())
+
+    override fun favorites(): Flow<Set<String>> = favoriteIds
+    override fun savedAddresses(): Flow<List<SavedAddress>> = addresses
+
+    override suspend fun toggleFavorite(dishId: String) {
+        val current = favoriteIds.value
+        favoriteIds.value = if (current.contains(dishId)) current - dishId else current + dishId
+    }
+
+    override suspend fun saveAddress(address: SavedAddress) {
+        addresses.value = addresses.value.filterNot { it.id == address.id } + address
+    }
+
+    override suspend fun deleteAddress(id: String) {
+        addresses.value = addresses.value.filterNot { it.id == id }
+    }
     override val customer = MutableStateFlow(auth.currentUser?.let {
         Customer(it.uid, it.displayName.orEmpty(), it.email.orEmpty(), if (it.email?.lowercase()?.contains("staff") == true) UserRole.STAFF else UserRole.CUSTOMER)
     })

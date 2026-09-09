@@ -178,7 +178,13 @@ private fun DishImage(dish: Dish, modifier: Modifier = Modifier) {
 private fun DetailScreen(dish: Dish, state: EatItState, model: EatItViewModel, onCart: () -> Unit) {
     Column(Modifier.widthIn(max = EatItTheme.sizing.readingWidth).fillMaxWidth().verticalScroll(rememberScrollState()).padding(24.dp), verticalArrangement = Arrangement.spacedBy(24.dp)) {
         Box(Modifier.fillMaxWidth().height(280.dp).clip(MaterialTheme.shapes.extraLarge)) { DishImage(dish) }
-        EatItBadge(state.catalog.categories.find { it.id == dish.categoryId }?.name ?: "On the menu", EatItTone.Positive)
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+            EatItBadge(state.catalog.categories.find { it.id == dish.categoryId }?.name ?: "On the menu", EatItTone.Positive)
+            IconButton({ model.toggleFavorite(dish.id) }) {
+                Icon(if (state.isFavorite(dish.id)) Icons.Default.Favorite else Icons.Default.FavoriteBorder, "Favorite",
+                    tint = if (state.isFavorite(dish.id)) MaterialTheme.colorScheme.primary else LocalContentColor.current)
+            }
+        }
         Text(dish.name, style = MaterialTheme.typography.headlineLarge)
         Text(money(dish.pricePaise), style = MaterialTheme.typography.headlineSmall, color = MaterialTheme.colorScheme.primary)
         if (dish.description.isNotBlank()) Text(dish.description, style = MaterialTheme.typography.bodyLarge)
@@ -280,6 +286,8 @@ private fun OrdersScreen(state: EatItState, model: EatItViewModel) {
                             } else {
                                 EatItBadge("Completed", EatItTone.Positive)
                             }
+                        } else {
+                            EatItButton("Reorder", { model.reorder(order) }, style = EatItButtonStyle.Secondary)
                         }
                     }
                 }

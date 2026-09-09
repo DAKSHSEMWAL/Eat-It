@@ -49,13 +49,13 @@ Work from branch `feat/compose-design-system`. The active Android project is `an
 
 ## P2 — engineering-quality evidence
 
-- [ ] Add Macrobenchmark and baseline-profile modules.
+- [x] Add Macrobenchmark and baseline-profile modules.
   - Record cold startup and menu scroll baselines on a named emulator/device before setting budgets.
-- [ ] Add privacy-safe observability.
+- [x] Add privacy-safe observability.
   - Redact delivery/contact data from logs; trace checkout stages and expose actionable failure metrics.
-- [ ] Add API compatibility and token-governance checks for `:designsystem`.
+- [x] Add API compatibility and token-governance checks for `:designsystem`.
   - Detect breaking public API changes and direct feature use of palette primitives.
-- [ ] Add favorites, reorder, and saved addresses after P0 auth/data ownership is complete.
+- [x] Add favorites, reorder, and saved addresses after P0 auth/data ownership is complete.
   - Reorder must reprice and show removed dishes before confirmation.
 
 ## P3 — developer platform experiment

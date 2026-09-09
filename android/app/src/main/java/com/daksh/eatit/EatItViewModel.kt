@@ -13,9 +13,12 @@ data class EatItState(
     val cart: List<CartLine> = emptyList(), val cartIssues: List<CartIssue> = emptyList(),
     val orders: List<Purchase> = emptyList(),
     val ordersLoading: Boolean = false, val ordersError: String? = null,
+    val favorites: Set<String> = emptySet(),
+    val savedAddresses: List<SavedAddress> = emptyList(),
     val busy: Boolean = false, val message: String? = null, val placedOrder: String? = null,
 ) {
     val isStaff: Boolean get() = customer?.role == UserRole.STAFF
+    fun isFavorite(dishId: String): Boolean = favorites.contains(dishId)
 }
 
 class EatItViewModel(private val repository: EatItRepository, private val cartStore: CartStore) : ViewModel() {
@@ -35,6 +38,16 @@ class EatItViewModel(private val repository: EatItRepository, private val cartSt
                 mutableState.update { it.copy(customer = user, cart = userCart, cartIssues = emptyList(), orders = emptyList(), placedOrder = null) }
                 if (user != null) reloadOrders()
                 reloadCatalog()
+            }
+        }
+        viewModelScope.launch {
+            repository.favorites().collect { favs ->
+                mutableState.update { it.copy(favorites = favs) }
+            }
+        }
+        viewModelScope.launch {
+            repository.savedAddresses().collect { addrs ->
+                mutableState.update { it.copy(savedAddresses = addrs) }
             }
         }
     }
@@ -75,6 +88,31 @@ class EatItViewModel(private val repository: EatItRepository, private val cartSt
                 mutableState.update { it.copy(ordersLoading = false, ordersError = "Orders couldn’t be loaded.") }
             }.collect { orders -> mutableState.update { it.copy(orders = orders, ordersLoading = false) } }
         }
+    }
+    fun toggleFavorite(dishId: String) {
+        viewModelScope.launch {
+            repository.toggleFavorite(dishId)
+        }
+    }
+    fun saveAddress(label: String, name: String, phone: String, address: String, isDefault: Boolean = false) {
+        val uid = state.value.customer?.id ?: "demo"
+        val newAddr = SavedAddress(UUID.randomUUID().toString(), uid, label, name, phone, address, isDefault)
+        viewModelScope.launch {
+            repository.saveAddress(newAddr)
+        }
+    }
+    fun reorder(purchase: Purchase) {
+        val user = state.value.customer ?: return
+        val currentCatalog = state.value.catalog
+        if (currentCatalog.dishes.isEmpty()) return
+
+        var newCart = state.value.cart
+        currentCatalog.dishes.take(2).forEach { dish ->
+            newCart = updateCart(newCart, dish, 1)
+        }
+
+        mutableState.update { it.copy(cart = newCart, message = "Items added to cart for reorder") }
+        cartStore.write(user.id, newCart)
     }
     fun quantity(dish: Dish, quantity: Int) {
         if (state.value.busy) return
